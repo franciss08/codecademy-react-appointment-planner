@@ -18,15 +18,25 @@ export const ContactsPage = ({contactsData, addNewContact}) => {
     Add contact info and clear data
     if the contact name is not a duplicate
     */
-    if(!duplicateName) {
+    if(duplicateName) {
+      console.log("Cant submit as contact is a duplicate");
+    } else if (currentName === '' || currentPhoneNumber === '' || currentEmail === '') {
+      console.log("Cant submit as there is a blank field");
+      alert("blank field");
+    } else {
       addNewContact(currentName, currentPhoneNumber, currentEmail);
       
       // clears the form
       setCurrentName('');
       setCurrentPhoneNumber('');
       setCurrentEmail('');
+      setDuplicateName(false);
+    }
+    
+    if(!duplicateName ) {
+      
     } else {
-      console.log("Cant submit as contact is a duplicate")
+      
     }
   };
 
@@ -56,13 +66,14 @@ export const ContactsPage = ({contactsData, addNewContact}) => {
           currentEmail={currentEmail}
           setCurrentEmail={setCurrentEmail}
           handleSubmit={handleSubmit}
+          duplicateName={duplicateName}
           />
       </section>
       <hr />
       <section>
         <h2>Contacts</h2>
         <TileList
-          contactsData={contactsData}
+          inputArray={contactsData}
           />
       </section>
     </div>

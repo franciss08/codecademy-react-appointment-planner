@@ -57,6 +57,7 @@ function App() {
             {/* Add props to AppointmentsPage */}
             <AppointmentsPage 
               appointmentsData={appointmentsData}
+              contactsData={contactData}
               addNewAppointment={addNewAppointment}/>
           </Route>
         </Switch>

@@ -7,29 +7,34 @@ export const ContactForm = ({
   setCurrentPhoneNumber,
   currentEmail,
   setCurrentEmail,
-  handleSubmit
+  handleSubmit,
+  duplicateName
 }) => {
 
   const handleChange = ({target}) => {
-    console.log(target.id,target.value);
-    switch (target.id) {
+    const {id} = target;
+    const {value} = target;
+    
+    switch (id) {
       case "name":
-        setCurrentName(target.value);
+        setCurrentName(value);
         break;
       case "phone":
-        setCurrentPhoneNumber(target.value);
+        setCurrentPhoneNumber(value);
         break;
       case "email":
-        setCurrentEmail(target.value);
+        setCurrentEmail(value);
         break;
-    }
+      default:
+        break;
+    };
   };
 
-  const phoneNumberRegEx = "";
+  const phoneNumberRegEx = /[0-9]{10,12}/;
 
   return (
     <form onSubmit={handleSubmit}>
-      <label for="name">Name:</label>
+      <label for="name">Name: <span id="error-message">{duplicateName && "contact with that name already exists!"}</span></label>
       <input 
         id="name"
         type="text"
@@ -44,6 +49,7 @@ export const ContactForm = ({
         placeHolder="enter the contact's phone number..."
         value={currentPhoneNumber}
         onChange={handleChange}
+        
       />
       <label for="email">Email:</label>
       <input 
