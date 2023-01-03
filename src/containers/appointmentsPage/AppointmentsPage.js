@@ -3,7 +3,7 @@ import { AppointmentForm } from "../../components/appointmentForm/AppointmentFor
 import { TileList } from "../../components/tileList/TileList";
 
 export const AppointmentsPage = (props) => {
-  const {contactsData, appointmentsData, setAppointmentData} = props;
+  const {contactsData, appointmentsData, addNewAppointment} = props;
   
   /*
   Define state variables for 
@@ -21,7 +21,7 @@ export const AppointmentsPage = (props) => {
     /*
     Add contact info and clear data  
     */
-    setAppointmentData(currentTitle, currentContact, currentDate, currentTime);
+    addNewAppointment(currentTitle, currentContact, currentDate, currentTime);
     setCurrentTitle('');
     setCurrentContact('');
     setCurrentDate('');

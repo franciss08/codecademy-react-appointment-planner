@@ -49,7 +49,7 @@ export const ContactForm = ({
         placeHolder="enter the contact's phone number..."
         value={currentPhoneNumber}
         onChange={handleChange}
-        
+        pattern={phoneNumberRegEx}
       />
       <label for="email">Email:</label>
       <input 

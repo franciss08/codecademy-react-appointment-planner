@@ -13,6 +13,7 @@ export const AppointmentForm = ({
   setCurrentTime,
   handleSubmit
 }) => {
+  
   const getTodayString = () => {
     const [month, day, year] = new Date()
       .toLocaleDateString("en-US")
@@ -20,10 +21,8 @@ export const AppointmentForm = ({
     return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
   };
 
-  const handleChange = (event) => {
-    const {target} = event;
+  const handleChange = ({target}) => {
     const {id, value} = target;
-    
     switch (id) {
       case "app-title":
         setCurrentTitle(value);
@@ -34,11 +33,13 @@ export const AppointmentForm = ({
       case "app-time":
         setCurrentTime(value);
         break;
+      case "app-contact":
+        setCurrentContact(value);
+        break;
       default:
         return;
-    }
-
-  }
+    };
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -50,7 +51,7 @@ export const AppointmentForm = ({
       <label for="app-date">Title: </label>
       <input id="app-date" 
         type="date" 
-        min={getTodayString} 
+        min={getTodayString()} 
         value={currentDate}
         onChange={handleChange}
         />
@@ -61,6 +62,8 @@ export const AppointmentForm = ({
         onChange={handleChange}/>
       <ContactPicker 
         contactsData={contactsData}
+        handleChange={handleChange}
+        currentContact={currentContact}
       />
       <input type="submit" />
     </form>
